@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import React from 'react';
-import { GoogleLogin } from 'react-google-login';
+import { GoogleLogin } from '@react-oauth/google';
 
 const responseGoogle = (response) => {
   console.log(response);
@@ -11,24 +11,20 @@ const responseGoogle = (response) => {
 }
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-      <GoogleLogin
-        clientId="235254569809-kmmp6vn0e2h9sdr5b2j1997io5qn1spb.apps.googleusercontent.com" // replace with your client id
-        buttonText="Login with Google"
-        onSuccess={responseGoogle}
-        onFailure={responseGoogle}
-        cookiePolicy={'single_host_origin'}
-      />
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  const responseMessage = (response) => {
+    console.log(response);
+};
+const errorMessage = (error) => {
+    console.log(error);
+};
+return (
+    <div>
+        <h2>React Google Login</h2>
+        <br />
+        <br />
+        <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
+    </div>
+)
 }
 
 export default App
